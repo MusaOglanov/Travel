@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\musac\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\musac\\.nuget\\packages"
+    ]
+  }
+}
