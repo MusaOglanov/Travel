@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Travel.Models;
 
 namespace Travel.DAL
 {
@@ -9,7 +10,9 @@ namespace Travel.DAL
             
         }
 
-
+        public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<HotelType> HotelTypes { get; set; }
+        public DbSet<HotelCategory> HotelCategories { get; set; }
 
 
     }
