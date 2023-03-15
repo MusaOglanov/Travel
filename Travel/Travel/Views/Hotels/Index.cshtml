@@ -1,0 +1,103 @@
+﻿@model List<Hotel>
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4>Hotels</h4>
+        </div>
+        <div class="card-body">
+            <div>
+                <div class="d-flex justify-content-between align-items-center">
+                    
+                    <div >
+                        <div id="table-1_filter" class="dataTables_filter">
+                            <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="table-1"></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6" style="text-align:right">
+                        <a href="#" class="btn btn-primary btn-lg rounded-pill shadow-sm">
+                            <i class="fas fa-plus-circle mr-2"></i>
+                            Create
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-striped dataTable no-footer" id="table-1" role="grid" aria-describedby="table-1_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="text-center sorting_asc" tabindex="0" aria-controls="table-1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
+                              #
+                            : activate to sort column descending" style="width: 35.9125px;">
+                                        #
+                                    </th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Country</th>
+                                    <th>City</th>
+                                    <th>Category</th>
+                                    <th>Star</th>
+                                    <th style="text-align:right">Actions</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr role="row" class="odd">
+                                   @foreach (Hotel  item in Model)
+                                    {
+                                        <td class="sorting_1">
+                                            1
+                                        </td>
+
+                                        <td>
+                                            @item.Name
+                                        </td>
+
+                                        <td>
+                                            @item.Name
+                                        </td>
+
+                                        <td>
+                                            @item.Country
+                                        </td>
+
+                                        <td>
+                                            @item.City
+                                        </td>
+
+                                        <td>
+                                           @foreach (HotelCategory hotelCategory in item.HotelCategories)
+                                            {
+                                                @hotelCategory.HotelType.Name
+                                            }
+                                        </td>
+
+                                        <td>
+                                            @item.Star
+                                        </td>
+                                        <td>
+                                            <div class="d-flex justify-content-end">
+                                                <a href="#" class="btn btn-outline-warning btn-sm" style="margin-right:5px">
+                                                    <i class="fas fa-edit mr-1"></i> Update
+                                                </a>
+                                                <a href="#" class="btn btn-outline-info btn-sm" style="margin-right:5px">
+                                                    <i class="far fa-eye"></i> Detail
+                                                </a>
+                                                <a href="#" class="btn btn-outline-danger btn-sm" style="margin-right:5px">
+                                                    <i class="fas fa-trash-alt mr-1"></i> Delete
+                                                </a>
+
+                                            </div>
+                                        </td>
+                                    }
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
