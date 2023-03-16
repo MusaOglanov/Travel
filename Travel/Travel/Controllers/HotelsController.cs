@@ -14,10 +14,31 @@ namespace Travel.Controllers
         {
             _db = db;
         }
-        public async Task< IActionResult> Index()
+        #region Index
+        public async Task<IActionResult> Index()
         {
-            List<Hotel> hotels = await _db.Hotels.Include(h=>h.HotelCategories).ThenInclude(h=>h.HotelType).ToListAsync();
+            List<Hotel> hotels = await _db.Hotels
+                .Include(h => h.HotelCategories)
+                .ThenInclude(h => h.HotelType)
+                .ToListAsync();
             return View(hotels);
         }
+        #endregion
+
+        #region Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+        #region Get
+
+        #endregion
+
+        #region Post
+
+        #endregion
+
+
+        #endregion
     }
 }

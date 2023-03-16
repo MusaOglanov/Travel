@@ -149,3 +149,4 @@ C:\Users\musac\Desktop\Travel\Travel\Travel\bin\Debug\net5.0\zh-Hant\Microsoft.C
 C:\Users\musac\Desktop\Travel\Travel\Travel\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\musac\Desktop\Travel\Travel\Travel\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\Hotels\Index.cshtml.g.cs
+C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\Hotels\Create.cshtml.g.cs

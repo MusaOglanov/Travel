@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Travel.DAL;
 
 namespace Travel.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230316152436_AddWebSiteCoulmnToHotelsTable")]
+    partial class AddWebSiteCoulmnToHotelsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,9 +50,6 @@ namespace Travel.Migrations
 
                     b.Property<string>("Info")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDomestic")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()

@@ -10,6 +10,7 @@ namespace Travel.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+        public bool IsDomestic { get; set; }
         public string Image { get; set; }
         public int Star { get; set; }
         public int Price { get; set; }
@@ -19,6 +20,7 @@ namespace Travel.Models
         public string Adress { get; set; }
         public string Email { get; set; }
         public long PhoneNumber { get; set; }
+        public long WebSite { get; set; }
         public bool RoomAvailable { get; set; }
         public int CheckInTime { get; set; }
         public int CheckOutTime { get; set; }
