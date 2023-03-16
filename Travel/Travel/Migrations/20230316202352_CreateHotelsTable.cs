@@ -13,6 +13,7 @@ namespace Travel.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDomestic = table.Column<bool>(type: "bit", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Star = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
@@ -22,6 +23,7 @@ namespace Travel.Migrations
                     Adress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<long>(type: "bigint", nullable: false),
+                    WebSite = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RoomAvailable = table.Column<bool>(type: "bit", nullable: false),
                     CheckInTime = table.Column<int>(type: "int", nullable: false),
                     CheckOutTime = table.Column<int>(type: "int", nullable: false),
@@ -38,7 +40,8 @@ namespace Travel.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDomestic = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

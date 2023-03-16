@@ -9,8 +9,8 @@ using Travel.DAL;
 namespace Travel.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230316152436_AddWebSiteCoulmnToHotelsTable")]
-    partial class AddWebSiteCoulmnToHotelsTable
+    [Migration("20230316202352_CreateHotelsTable")]
+    partial class CreateHotelsTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,6 +51,9 @@ namespace Travel.Migrations
                     b.Property<string>("Info")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDomestic")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -70,8 +73,8 @@ namespace Travel.Migrations
                     b.Property<int>("Star")
                         .HasColumnType("int");
 
-                    b.Property<long>("WebSite")
-                        .HasColumnType("bigint");
+                    b.Property<string>("WebSite")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

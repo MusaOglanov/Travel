@@ -71,8 +71,8 @@ namespace Travel.Migrations
                     b.Property<int>("Star")
                         .HasColumnType("int");
 
-                    b.Property<long>("WebSite")
-                        .HasColumnType("bigint");
+                    b.Property<string>("WebSite")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
