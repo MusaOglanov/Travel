@@ -35,6 +35,8 @@ namespace Travel.Controllers
         public async Task<IActionResult> Create()
         {
             ViewBag.HotelType = await _db.HotelTypes.ToListAsync();
+            int stars = 5; 
+            ViewBag.Stars = stars;
             return View();
         }
         #region Get
@@ -78,6 +80,8 @@ namespace Travel.Controllers
             }
             string folder = Path.Combine(_env.WebRootPath, "assets", "img");
             hotel.Image = await hotel.Photo.SaveImageAsync(folder);
+
+
 
             await _db.Hotels.AddAsync(hotel);
             await _db.SaveChangesAsync();

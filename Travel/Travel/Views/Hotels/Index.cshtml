@@ -20,6 +20,7 @@
                                     <th>Category</th>
                                     <th>Star</th>
                                     <th>Price</th>
+                                    <th>Is Domestic</th>
                                     <th style="text-align:right">Actions</th>
 
                                 </tr>
@@ -30,7 +31,7 @@
                                 {
                                     <tr>
                                         <td>
-                                            @item.Image
+                                            <img src="~/assets/img/@item.Image" style="width:80px;height:80px;object-fit:cover" />
                                         </td>
 
                                         <td>
@@ -53,11 +54,23 @@
                                         </td>
 
                                         <td>
-                                            @item.Star
+                                          @item.Star
                                         </td>
                                         <td>
                                             @item.Price
                                         </td>
+                                         <td>
+                                             @if(item.IsDomestic)
+                                            {
+                                                <span >Yerli</span>
+                                            }
+                                            else
+                                            {
+                                                <span>Xarici</span>
+
+                                            }
+                                        </td>
+
                                         <td>
                                             <div class="d-flex justify-content-end">
                                                 <a href="#" class="btn btn-outline-warning btn-sm" style="margin-right:5px">

@@ -4,27 +4,24 @@
    <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="mb-0">Hotel  Create</h5>
     </div>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
 
         <div class="form-group">
             <label class="form-label" asp-for="Photo"></label>
-            <input asp-for="Photo"  class="form-control">
+            <input accept="image/*" asp-for="Photo" class="form-control">
             <span class="text-danger" asp-validation-for="Photo"></span>
 
         </div>
-      @*  <div class="form-group" >
-            <label class="form-label" asp-for="Photo"></label>
-            <input asp-for="Photo" class="form-control">
-            <span class="text-danger" asp-validation-for="Photo"></span>
-        </div>*@
+      
         <div class="form-group">
             <label class="form-label" asp-for="Name">  Name</label>
             <input asp-for="Name" type="text" class="form-control">
             <span class="text-danger" asp-validation-for="Name"></span>
         </div>
-
+        
+        
         <div class="mb-3">
-            <label class="form-label" asp-for="IsDomestic"></label>
+            <label class="form-label" asp-for="IsDomestic">Is Local</label>
             <input asp-for="IsDomestic">
             <span class="text-danger" asp-validation-for="IsDomestic"></span>
         </div>
@@ -62,26 +59,34 @@
             <input asp-for="RoomAvailable">
             <span class="text-danger" asp-validation-for="RoomAvailable"></span>
         </div>
-
-        <div class="form-group">
-            <label asp-for="Star" class="form-label"></label>
-            <select class="custom-select">
-                <option value="" disabled selected>Select a Star</option>
-                <option value="1">★</option>
-                <option value="2">★★</option>
-                <option value="3">★★★</option>
-                <option value="4">★★★★</option>
-                <option value="5">★★★★★</option>
-            </select>
-            <span class="text-danger" asp-validation-for="Star"></span>
+        <div>
+            <p>Seçilmiş yıldız sayısı: @ViewBag.Stars</p>
+            <span class="fa fa-star @((ViewBag.Stars >= 1) ? "checked" : "")"></span>
+            <span class="fa fa-star @((ViewBag.Stars >= 2) ? "checked" : "")"></span>
+            <span class="fa fa-star @((ViewBag.Stars >= 3) ? "checked" : "")"></span>
+            <span class="fa fa-star @((ViewBag.Stars >= 4) ? "checked" : "")"></span>
+            <span class="fa fa-star @((ViewBag.Stars >= 5) ? "checked" : "")"></span>
         </div>
+        <select name="Star" class="form-control">
+            <option value="1">★</option>
+            <option value="2">★★</option>
+            <option value="3">★★★</option>
+            <option value="4">★★★★</option>
+            <option value="5">★★★★★</option>
+        </select>
 
+        
+       @* <div class="form-group">
+            <label asp-for="Star" class="form-label"></label>
+            <input asp-for="Star" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="Star"></span>
+        </div>*@
         <div class="form-group">
             <label asp-for="Rating" class="form-label"></label>
             <input asp-for="Rating" type="text" class="form-control">
             <span class="text-danger" asp-validation-for="Rating"></span>
         </div>
-
+       
        @* <div class="form-group">
             <label asp-for="CheckInTime" for="checkinTime">Check-in Time:</label>
             <input asp-for="CheckInTime" type="time" class="form-control" required>
