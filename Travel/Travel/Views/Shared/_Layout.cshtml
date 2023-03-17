@@ -257,10 +257,13 @@
                     <ul class="sidebar-menu">
                         <li class="menu-header">Main</li>
                         <li class="dropdown active">
-                            <a href="index.html" class="nav-link"><i data-feather="grid"></i><span>Dashboard</span></a>
+                            <a asp-controller="Home" asp-action="Index" class="nav-link"><i data-feather="grid"></i><span>Dashboard</span></a>
                         </li>
                        <li class="dropdown active">
                             <a asp-controller="Hotels" asp-action="Index" class="nav-link"> <i data-feather="grid"></i><span>Hotels</span></a>
+                        </li>
+                        <li class="dropdown active">
+                            <a asp-controller="HotelTypes" asp-action="Index" class="nav-link"> <i data-feather="grid"></i><span>HotelTypesController</span></a>
                         </li>
                        
                     </ul>

@@ -1,20 +1,24 @@
-﻿@model Hotel
+﻿
+@model Hotel
 <div class="card-body">
-    <h4 class="card-title">Basic form elements</h4>
-    <p class="card-description">
-        Basic form elements
-    </p>
-    <form class="forms-sample" enctype="multipart/form-data">
+   <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Hotel  Create</h5>
+    </div>
+    <form method="post">
 
         <div class="form-group">
-            <label>File</label>
-            <input asp-for="Photo" type="file" class="form-control">
+            <label class="form-label" asp-for="Photo"></label>
+            <input asp-for="Photo"  class="form-control">
             <span class="text-danger" asp-validation-for="Photo"></span>
 
         </div>
-
+      @*  <div class="form-group" >
+            <label class="form-label" asp-for="Photo"></label>
+            <input asp-for="Photo" class="form-control">
+            <span class="text-danger" asp-validation-for="Photo"></span>
+        </div>*@
         <div class="form-group">
-            <label for="exampleInputName1" asp-for="Name">  Name</label>
+            <label class="form-label" asp-for="Name">  Name</label>
             <input asp-for="Name" type="text" class="form-control">
             <span class="text-danger" asp-validation-for="Name"></span>
         </div>
@@ -25,28 +29,33 @@
             <span class="text-danger" asp-validation-for="IsDomestic"></span>
         </div>
         <div class="form-group">
-            <label for="exampleInputName1" asp-for="Country"></label>
+            <label class="form-label" asp-for="Country"></label>
             <input asp-for="Country" type="text" class="form-control">
             <span class="text-danger" asp-validation-for="Country"></span>
         </div>
 
         <div class="form-group">
-            <label for="exampleInputName1" asp-for="City"></label>
+            <label class="form-label" asp-for="City"></label>
             <input asp-for="City" type="text" class="form-control">
             <span class="text-danger" asp-validation-for="City"></span>
         </div>
 
         <div class="form-group">
-            <label for="exampleInputName1" asp-for="Adress"></label>
+            <label class="form-label" asp-for="Adress"></label>
             <input asp-for="Adress" type="text" class="form-control">
             <span class="text-danger" asp-validation-for="Adress"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="HotelCategories">Categories</label>
-            <select class="form-control" name="brandId">
+            <select class="form-control" name="hoteTypesId[]">
+                @foreach (HotelType hotelType in ViewBag.HotelType)
+                {
+                    <option value="@hotelType.Id">@hotelType.Name</option>
+                }
             </select>
             <span class="text-danger" asp-validation-for="HotelCategories"></span>
+          
         </div>
         <div class="mb-3">
             <label class="form-label" asp-for="RoomAvailable">Room Available</label>
@@ -55,7 +64,7 @@
         </div>
 
         <div class="form-group">
-            <label asp-for="Star" for="exampleInputName1"></label>
+            <label asp-for="Star" class="form-label"></label>
             <select class="custom-select">
                 <option value="" disabled selected>Select a Star</option>
                 <option value="1">★</option>
@@ -68,12 +77,12 @@
         </div>
 
         <div class="form-group">
-            <label asp-for="Rating" for="exampleInputName1"></label>
+            <label asp-for="Rating" class="form-label"></label>
             <input asp-for="Rating" type="text" class="form-control">
             <span class="text-danger" asp-validation-for="Rating"></span>
         </div>
 
-        <div class="form-group">
+       @* <div class="form-group">
             <label asp-for="CheckInTime" for="checkinTime">Check-in Time:</label>
             <input asp-for="CheckInTime" type="time" class="form-control" required>
             <span class="text-danger" asp-validation-for="CheckInTime"></span>
@@ -84,16 +93,16 @@
             <input asp-for="CheckOutTime" type="time" class="form-control" required>
             <span class="text-danger" asp-validation-for="CheckOutTime"></span>
 
-        </div>
+        </div>*@
 
         <div class="form-group">
-            <label for="exampleInputName1" asp-for="Info"></label>
+            <label class="form-label" asp-for="Info"></label>
             <textarea asp-for="Info" type="text" class="form-control"></textarea>
             <span class="text-danger" asp-validation-for="Info"></span>
         </div>
 
         <div class="form-group">
-            <label for="exampleInputName1" asp-for="Email"></label>
+            <label class="form-label" asp-for="Email"></label>
             <input asp-for="Email" type="text" class="form-control">
             <span class="text-danger" asp-validation-for="Email"></span>
 
@@ -112,13 +121,13 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleInputName1" asp-for="WebSite"></label>
+            <label class="form-label" asp-for="WebSite"></label>
             <input asp-for="WebSite" type="text" class="form-control">
             <span class="text-danger" asp-validation-for="WebSite"></span>
         </div>
 
         <div class="mb-3">
-            <label for="exampleInputName1" asp-for="Price"></label>
+            <label class="form-label" asp-for="Price"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <select class="form-control" name="currency">

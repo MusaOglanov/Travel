@@ -1,36 +1,18 @@
 ﻿@model List<Hotel>
 <div class="col-12">
     <div class="card">
-        <div class="card-header">
-            <h4>Hotels</h4>
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-header">Tags</h5>
+            <a asp-action="Create" class="btn rounded-pill btn-primary text-white " style="margin-right:20px">Create</a>
         </div>
         <div class="card-body">
             <div>
-                <div class="d-flex justify-content-between align-items-center">
-                    
-                    <div >
-                        <div id="table-1_filter" class="dataTables_filter">
-                            <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="table-1"></label>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6" style="text-align:right">
-                        <a asp-action="Create" class="btn btn-primary btn-lg rounded-pill shadow-sm">
-                            <i class="fas fa-plus-circle mr-2"></i>
-                            Create
-                        </a>
-                    </div>
-                </div>
-
                 <div class="row">
                     <div class="col-sm-12">
                         <table class="table table-striped dataTable no-footer" id="table-1" role="grid" aria-describedby="table-1_info">
                             <thead>
                                 <tr role="row">
-                                    <th class="text-center sorting_asc" tabindex="0" aria-controls="table-1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="
-                              #
-                            : activate to sort column descending" style="width: 35.9125px;">
-                                        #
-                                    </th>
+
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Country</th>
@@ -44,13 +26,9 @@
                             </thead>
                             <tbody>
 
-                                <tr role="row" class="odd">
-                                   @foreach (Hotel  item in Model)
-                                    {
-                                        <td class="sorting_1">
-                                            1
-                                        </td>
-
+                                @foreach (Hotel item in Model)
+                                {
+                                    <tr>
                                         <td>
                                             @item.Image
                                         </td>
@@ -68,7 +46,7 @@
                                         </td>
 
                                         <td>
-                                           @foreach (HotelCategory hotelCategory in item.HotelCategories)
+                                            @foreach (HotelCategory hotelCategory in item.HotelCategories)
                                             {
                                                 @hotelCategory.HotelType.Name
                                             }
@@ -94,8 +72,10 @@
 
                                             </div>
                                         </td>
-                                    }
-                                </tr>
+                                    </tr>
+
+                                }
+
                             </tbody>
                         </table>
                     </div>
