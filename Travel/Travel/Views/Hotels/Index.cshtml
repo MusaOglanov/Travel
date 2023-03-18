@@ -21,6 +21,7 @@
                                     <th>Star</th>
                                     <th>Price</th>
                                     <th>Is Domestic</th>
+                                    <th>Status</th>
                                     <th style="text-align:right">Actions</th>
 
                                 </tr>
@@ -54,15 +55,15 @@
                                         </td>
 
                                         <td>
-                                          @item.Star
+                                            @item.Star
                                         </td>
                                         <td>
                                             @item.Price
                                         </td>
-                                         <td>
-                                             @if(item.IsDomestic)
+                                        <td>
+                                            @if (item.IsDomestic)
                                             {
-                                                <span >Yerli</span>
+                                                <span>Yerli</span>
                                             }
                                             else
                                             {
@@ -70,7 +71,17 @@
 
                                             }
                                         </td>
-
+                                        
+                                        <td>
+                                                @if (item.İsDeactive)
+                                                {
+                                                <span class="text-danger">Passiv</span>
+                                                }
+                                                else
+                                                {
+                                                <span class="text-success">Active</span>
+                                                }
+                                        </td>                                       
                                         <td>
                                             <div class="d-flex justify-content-end">
                                                 <a href="#" class="btn btn-outline-warning btn-sm" style="margin-right:5px">
@@ -79,9 +90,17 @@
                                                 <a href="#" class="btn btn-outline-info btn-sm" style="margin-right:5px">
                                                     <i class="far fa-eye"></i> Detail
                                                 </a>
-                                                <a href="#" class="btn btn-outline-danger btn-sm" style="margin-right:5px">
-                                                    <i class="fas fa-trash-alt mr-1"></i> Delete
-                                                </a>
+                                                @if (item.İsDeactive)
+                                                {
+                                                    <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-outline-success btn-sm" style="margin-right:5px">  <i class="fas fa-trash-alt mr-1"></i> Activate</a>
+
+                                                }
+                                                else
+                                                {
+                                                    <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm" style="margin-right:5px">  <i class="fas fa-trash-alt mr-1"></i>DeActivate</a>
+
+                                                }
+
 
                                             </div>
                                         </td>

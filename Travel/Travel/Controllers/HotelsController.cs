@@ -15,7 +15,7 @@ namespace Travel.Controllers
     {
         private readonly AppDbContext _db;
         private readonly IWebHostEnvironment _env;
-        public HotelsController(AppDbContext db,IWebHostEnvironment env)
+        public HotelsController(AppDbContext db, IWebHostEnvironment env)
         {
             _db = db;
             _env = env;
@@ -35,7 +35,7 @@ namespace Travel.Controllers
         public async Task<IActionResult> Create()
         {
             ViewBag.HotelType = await _db.HotelTypes.ToListAsync();
-        
+
             return View();
         }
         #region Get
@@ -60,8 +60,8 @@ namespace Travel.Controllers
                 hotelCategories.Add(hotelCategory);
             }
             hotel.HotelCategories = hotelCategories;
-            bool IsExist=await _db.Hotels.AnyAsync(h=>h.Name== hotel.Name);
-            if(IsExist)
+            bool IsExist = await _db.Hotels.AnyAsync(h => h.Name == hotel.Name);
+            if (IsExist)
             {
                 ModelState.AddModelError("Name", "This already is exist");
                 return View();
@@ -95,7 +95,7 @@ namespace Travel.Controllers
             string folder = Path.Combine(_env.WebRootPath, "assets", "img");
             hotel.Image = await hotel.Photo.SaveImageAsync(folder);
 
-           
+
             await _db.Hotels.AddAsync(hotel);
             await _db.SaveChangesAsync();
 
@@ -106,5 +106,47 @@ namespace Travel.Controllers
 
 
         #endregion
+
+        #region Update
+        public IActionResult Update(Hotel hotel)
+        {
+            return View();
+        }
+        #region get
+
+        #endregion
+
+        #region post
+
+        #endregion
+
+        #endregion
+
+        #region Activity
+        public async Task<IActionResult> Activity(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Hotel dbHotel = await _db.Hotels.FirstOrDefaultAsync(t => t.Id == id);
+            if (dbHotel == null)
+            {
+                return BadRequest();
+            }
+
+            if (dbHotel.İsDeactive)
+            {
+                dbHotel.İsDeactive = false;
+            }
+            else
+            {
+                dbHotel.İsDeactive = true;
+            }
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        #endregion
+
     }
-    }
+}
