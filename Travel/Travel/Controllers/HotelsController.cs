@@ -32,14 +32,14 @@ namespace Travel.Controllers
         #endregion
 
         #region Create
+
+        #region Get
         public async Task<IActionResult> Create()
         {
             ViewBag.HotelType = await _db.HotelTypes.ToListAsync();
 
             return View();
         }
-        #region Get
-
         #endregion
 
         #region Post
@@ -108,15 +108,73 @@ namespace Travel.Controllers
         #endregion
 
         #region Update
-        public IActionResult Update(Hotel hotel)
-        {
-            return View();
-        }
-        #region get
 
+        #region get
+        public async Task<IActionResult> Update( int? id)
+        {
+            if (id == null)
+            {
+                return View();
+            }
+            Hotel dbHotel = await _db.Hotels.FirstOrDefaultAsync();
+
+            if (dbHotel == null)
+            {
+                return BadRequest();
+            }
+            ViewBag.HotelTypes = await _db.HotelTypes.ToListAsync();
+            return View(dbHotel);
+        }
         #endregion
 
         #region post
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(Hotel hotel, int? id)
+        {
+            if (id == null)
+            {
+                return View();
+            }
+            Hotel dbHotel = await _db.Hotels.FirstOrDefaultAsync();
+
+            if (dbHotel == null)
+            {
+                return BadRequest();
+            }
+            ViewBag.HotelTypes = await _db.HotelTypes.ToListAsync();
+
+            bool isExist = await _db.Hotels.AnyAsync(h => h.Name == hotel.Name && h.Id != id);
+            if(isExist)
+            {
+                ModelState.AddModelError("Name", "This name already is exist");
+            }
+            if (hotel.Photo == null)
+            {
+                if (!hotel.Photo.IsImage())
+                {
+                    ModelState.AddModelError("Photo", "Please slect image file");
+                    return View();
+                }
+                if (hotel.Photo.IsOlder2MB())
+                {
+                    ModelState.AddModelError("Photo", "Max 2MB");
+                    return View(dbHotel);
+                }
+                string folder = Path.Combine(_env.WebRootPath, "assets","img");
+                dbHotel.Image = await hotel.Photo.SaveImageAsync(folder);
+            }
+
+            dbHotel.Name = hotel.Name;
+            dbHotel.Price = hotel.Price;
+            dbHotel.HotelCategories = hotel.HotelCategories;
+            
+
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
 
         #endregion
 
@@ -168,6 +226,7 @@ namespace Travel.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
         #endregion
 
     }

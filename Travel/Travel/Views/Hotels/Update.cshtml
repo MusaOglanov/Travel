@@ -1,0 +1,125 @@
+﻿@model Hotel
+<div class="card-body">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Hotel  Update</h5>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label class="form-label" asp-for="Photo"></label>
+            <input accept="image/*" asp-for="Photo" class="form-control">
+            <span class="text-danger" asp-validation-for="Photo"></span>
+
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="Name">  Name</label>
+            <input asp-for="Name" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label" asp-for="IsDomestic">Is Local</label>
+            <input asp-for="IsDomestic">
+            <span class="text-danger" asp-validation-for="IsDomestic"></span>
+        </div>
+        <div class="form-group">
+            <label class="form-label" asp-for="Country"></label>
+            <input asp-for="Country" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="Country"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="City"></label>
+            <input asp-for="City" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="City"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="Adress"></label>
+            <input asp-for="Adress" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="Adress"></span>
+        </div>
+
+       @* <div class="form-group">
+            <label asp-for="HotelCategories">Categories</label>
+            <select id="typeId" class="form-control" name="hoteTypesId[]">
+                @foreach (HotelType hotelType in ViewBag.HotelTypes)
+                {
+                    if (Model.HotelCategories.Any(h => h.Id == hotelType.Id))
+                    {
+                        <option selected value="@hotelType.Id">@hotelType.Name</option>
+
+                    }
+                    else
+                    {
+                        <option value="@hotelType.Id">@hotelType.Name</option>
+
+                    }
+                }
+            </select>
+            <span class="text-danger" asp-validation-for="HotelCategories"></span>
+
+        </div>*@
+        <div class="mb-3">
+            <label class="form-label" asp-for="RoomAvailable">Room Available</label>
+            <input asp-for="RoomAvailable">
+            <span class="text-danger" asp-validation-for="RoomAvailable"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Star" class="form-label"></label>
+            <input asp-for="Star" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="Star"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Rating" class="form-label"></label>
+            <input asp-for="Rating" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="Rating"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label class="form-label" asp-for="Info"></label>
+            <textarea asp-for="Info" type="text" class="form-control"></textarea>
+            <span class="text-danger" asp-validation-for="Info"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="Email"></label>
+            <input asp-for="Email" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="Email"></span>
+
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PhoneNumber">Telephone</label>
+
+            <input asp-for="PhoneNumber" type="tel" class="form-control">
+            <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+
+
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="WebSite"></label>
+            <input asp-for="WebSite" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="WebSite"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" asp-for="Price"></label>
+
+            <input asp-for="Price" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="Price"></span>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a asp-action="index" class="btn btn-secondary text-white">Go Back</a>
+    </form>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
