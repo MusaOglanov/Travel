@@ -59,47 +59,19 @@
             <input asp-for="RoomAvailable">
             <span class="text-danger" asp-validation-for="RoomAvailable"></span>
         </div>
-        <div>
-            <p>Seçilmiş yıldız sayısı: @ViewBag.Stars</p>
-            <span class="fa fa-star @((ViewBag.Stars >= 1) ? "checked" : "")"></span>
-            <span class="fa fa-star @((ViewBag.Stars >= 2) ? "checked" : "")"></span>
-            <span class="fa fa-star @((ViewBag.Stars >= 3) ? "checked" : "")"></span>
-            <span class="fa fa-star @((ViewBag.Stars >= 4) ? "checked" : "")"></span>
-            <span class="fa fa-star @((ViewBag.Stars >= 5) ? "checked" : "")"></span>
-        </div>
-        <select name="Star" class="form-control">
-            <option value="1">★</option>
-            <option value="2">★★</option>
-            <option value="3">★★★</option>
-            <option value="4">★★★★</option>
-            <option value="5">★★★★★</option>
-        </select>
-
-        
-       @* <div class="form-group">
+       
+        <div class="form-group">
             <label asp-for="Star" class="form-label"></label>
             <input asp-for="Star" type="text" class="form-control">
             <span class="text-danger" asp-validation-for="Star"></span>
-        </div>*@
+        </div>
         <div class="form-group">
             <label asp-for="Rating" class="form-label"></label>
             <input asp-for="Rating" type="text" class="form-control">
             <span class="text-danger" asp-validation-for="Rating"></span>
         </div>
        
-       @* <div class="form-group">
-            <label asp-for="CheckInTime" for="checkinTime">Check-in Time:</label>
-            <input asp-for="CheckInTime" type="time" class="form-control" required>
-            <span class="text-danger" asp-validation-for="CheckInTime"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="CheckOutTime" for="checkinTime">Check-out Time:</label>
-            <input asp-for="CheckOutTime" type="time" class="form-control" required>
-            <span class="text-danger" asp-validation-for="CheckOutTime"></span>
-
-        </div>*@
-
+      
         <div class="form-group">
             <label class="form-label" asp-for="Info"></label>
             <textarea asp-for="Info" type="text" class="form-control"></textarea>
@@ -115,14 +87,11 @@
 
         <div class="form-group">
             <label asp-for="PhoneNumber">Telephone</label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">+994</span>
-                </div>
+          
                 <input asp-for="PhoneNumber" type="tel" class="form-control">
                 <span class="text-danger" asp-validation-for="PhoneNumber"></span>
 
-            </div>
+   
         </div>
 
         <div class="form-group">
@@ -133,23 +102,16 @@
 
         <div class="mb-3">
             <label class="form-label" asp-for="Price"></label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <select class="form-control" name="currency">
-                        <option value="USD">&#36; USD</option>
-                        <option value="EUR">&#128; EURO</option>
-                        <option value="AZN">&#8380; AZN</option>
-                    </select>
-                </div>
+            
                 <input asp-for="Price" type="text" class="form-control">
                 <span class="text-danger" asp-validation-for="Price"></span>
-                <div class="input-group-append">
-                    <span class="input-group-text">.00</span>
-                </div>
-            </div>
+               
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
         <a asp-action="index" class="btn btn-secondary text-white">Go Back</a>
     </form>
 </div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

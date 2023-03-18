@@ -35,8 +35,7 @@ namespace Travel.Controllers
         public async Task<IActionResult> Create()
         {
             ViewBag.HotelType = await _db.HotelTypes.ToListAsync();
-            int stars = 5; 
-            ViewBag.Stars = stars;
+        
             return View();
         }
         #region Get
@@ -60,9 +59,24 @@ namespace Travel.Controllers
                 };
                 hotelCategories.Add(hotelCategory);
             }
-
             hotel.HotelCategories = hotelCategories;
+            bool IsExist=await _db.Hotels.AnyAsync(h=>h.Name== hotel.Name);
+            if(IsExist)
+            {
+                ModelState.AddModelError("Name", "This already is exist");
+                return View();
 
+            }
+            if (hotel.Star < 1 || hotel.Star > 5)
+            {
+                ModelState.AddModelError("Star", "Please choose a number between 1 and 5 ");
+                return View();
+            }
+            if (hotel.Rating < 1 || hotel.Rating > 10)
+            {
+                ModelState.AddModelError("Rating", "Please choose a number between 1 and 10 ");
+                return View();
+            }
             if (hotel.Photo == null)
             {
                 ModelState.AddModelError("Photo", "Please slect image ");
@@ -81,8 +95,7 @@ namespace Travel.Controllers
             string folder = Path.Combine(_env.WebRootPath, "assets", "img");
             hotel.Image = await hotel.Photo.SaveImageAsync(folder);
 
-
-
+           
             await _db.Hotels.AddAsync(hotel);
             await _db.SaveChangesAsync();
 

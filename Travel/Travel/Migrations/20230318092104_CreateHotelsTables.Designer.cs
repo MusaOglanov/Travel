@@ -9,8 +9,8 @@ using Travel.DAL;
 namespace Travel.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230316202352_CreateHotelsTable")]
-    partial class CreateHotelsTable
+    [Migration("20230318092104_CreateHotelsTables")]
+    partial class CreateHotelsTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,12 +29,6 @@ namespace Travel.Migrations
 
                     b.Property<string>("Adress")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CheckInTime")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CheckOutTime")
-                        .HasColumnType("int");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -61,11 +55,11 @@ namespace Travel.Migrations
                     b.Property<long>("PhoneNumber")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
 
                     b.Property<bool>("RoomAvailable")
                         .HasColumnType("bit");
@@ -75,6 +69,9 @@ namespace Travel.Migrations
 
                     b.Property<string>("WebSite")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("İsDeactive")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -110,12 +107,12 @@ namespace Travel.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("IsDomestic")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("İsDeactive")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

@@ -8,7 +8,7 @@ namespace Travel.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public bool IsDomestic { get; set; }
+        public bool İsDeactive { get; set; }
         public List<HotelCategory> HotelCategories { get; set; }
 
     }

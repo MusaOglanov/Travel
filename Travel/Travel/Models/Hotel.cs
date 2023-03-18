@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,7 +14,7 @@ namespace Travel.Models
         public bool IsDomestic { get; set; }
         public string Image { get; set; }
         public int Star { get; set; }
-        public int Price { get; set; }
+        public double Price { get; set; }
         public string Info { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
@@ -22,12 +23,11 @@ namespace Travel.Models
         public long PhoneNumber { get; set; }
         public string WebSite { get; set; }
         public bool RoomAvailable { get; set; }
-        public int CheckInTime { get; set; }
-        public int CheckOutTime { get; set; }
-        public int Rating { get; set; }
+        public double Rating { get; set; }
         public List<HotelCategory> HotelCategories { get; set; }
         [NotMapped]
         public IFormFile Photo { get; set; }
+        public bool İsDeactive { get; set; }
 
     }
 }

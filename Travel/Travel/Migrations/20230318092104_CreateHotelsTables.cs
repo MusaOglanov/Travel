@@ -2,7 +2,7 @@
 
 namespace Travel.Migrations
 {
-    public partial class CreateHotelsTable : Migration
+    public partial class CreateHotelsTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,7 @@ namespace Travel.Migrations
                     IsDomestic = table.Column<bool>(type: "bit", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Star = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
                     Info = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -25,9 +25,8 @@ namespace Travel.Migrations
                     PhoneNumber = table.Column<long>(type: "bigint", nullable: false),
                     WebSite = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RoomAvailable = table.Column<bool>(type: "bit", nullable: false),
-                    CheckInTime = table.Column<int>(type: "int", nullable: false),
-                    CheckOutTime = table.Column<int>(type: "int", nullable: false),
-                    Rating = table.Column<int>(type: "int", nullable: false)
+                    Rating = table.Column<double>(type: "float", nullable: false),
+                    İsDeactive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -41,7 +40,7 @@ namespace Travel.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsDomestic = table.Column<bool>(type: "bit", nullable: false)
+                    İsDeactive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
