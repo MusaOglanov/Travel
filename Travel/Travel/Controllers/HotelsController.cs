@@ -122,6 +122,26 @@ namespace Travel.Controllers
 
         #endregion
 
+        #region Detail
+
+        public async Task<IActionResult> Detail(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Hotel hotel = await _db.Hotels.FirstOrDefaultAsync(h => h.Id == id);
+            if (hotel == null)
+            {
+                return BadRequest();
+            }
+            return View(hotel);
+        }
+
+
+        #endregion
+
+
         #region Activity
         public async Task<IActionResult> Activity(int? id)
         {
@@ -129,7 +149,9 @@ namespace Travel.Controllers
             {
                 return NotFound();
             }
-            Hotel dbHotel = await _db.Hotels.FirstOrDefaultAsync(t => t.Id == id);
+            Hotel dbHotel = await _db.Hotels.Include(h => h.HotelCategories)
+                .ThenInclude(h => h.HotelType).FirstOrDefaultAsync(t => t.Id == id);
+
             if (dbHotel == null)
             {
                 return BadRequest();

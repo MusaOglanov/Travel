@@ -152,3 +152,4 @@ C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\Hotels\
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\Hotels\Create.cshtml.g.cs
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\HotelTypes\Index.cshtml.g.cs
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\HotelTypes\Create.cshtml.g.cs
+C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\Hotels\Detail.cshtml.g.cs
