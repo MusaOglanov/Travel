@@ -45,7 +45,7 @@
 
         <div class="form-group">
             <label asp-for="HotelCategories">Categories</label>
-            <select class="form-control" name="hoteTypesId[]">
+            <select multiple class="form-control" name="hoteTypesId[]">
                 @foreach (HotelType hotelType in ViewBag.HotelType)
                 {
                     <option value="@hotelType.Id">@hotelType.Name</option>

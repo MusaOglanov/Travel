@@ -42,12 +42,12 @@
             <span class="text-danger" asp-validation-for="Adress"></span>
         </div>
 
-       @* <div class="form-group">
+        <div class="form-group">
             <label asp-for="HotelCategories">Categories</label>
-            <select id="typeId" class="form-control" name="hoteTypesId[]">
+            <select multiple id="typeId" class="form-control" name="hoteTypesId[]">
                 @foreach (HotelType hotelType in ViewBag.HotelTypes)
                 {
-                    if (Model.HotelCategories.Any(h => h.Id == hotelType.Id))
+                    if (Model.HotelCategories.Any(h => h.HotelTypeId == hotelType.Id))
                     {
                         <option selected value="@hotelType.Id">@hotelType.Name</option>
 
@@ -55,13 +55,13 @@
                     else
                     {
                         <option value="@hotelType.Id">@hotelType.Name</option>
-
+ 
                     }
                 }
             </select>
             <span class="text-danger" asp-validation-for="HotelCategories"></span>
 
-        </div>*@
+        </div>
         <div class="mb-3">
             <label class="form-label" asp-for="RoomAvailable">Room Available</label>
             <input asp-for="RoomAvailable">
