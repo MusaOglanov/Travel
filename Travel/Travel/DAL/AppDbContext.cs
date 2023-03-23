@@ -13,6 +13,9 @@ namespace Travel.DAL
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<HotelType> HotelTypes { get; set; }
         public DbSet<HotelCategory> HotelCategories { get; set; }
+        public DbSet<Airport> Airports { get; set; }
+        public DbSet<FlightCategory> FlightCategories { get; set; }
+      
 
 
     }
