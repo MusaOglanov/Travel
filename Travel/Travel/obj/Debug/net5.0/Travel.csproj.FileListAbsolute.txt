@@ -156,3 +156,4 @@ C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\Hotels\
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\Hotels\Update.cshtml.g.cs
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\Airports\Index.cshtml.g.cs
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\Airports\Create.cshtml.g.cs
+C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\Airports\Update.cshtml.g.cs

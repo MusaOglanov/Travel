@@ -114,7 +114,7 @@ namespace Travel.Controllers
         {
             if (id == null)
             {
-                return View();
+                return NotFound();
             }
             Hotel dbHotel = await _db.Hotels
                .Include(h => h.HotelCategories)
