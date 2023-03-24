@@ -110,7 +110,7 @@ namespace Travel.Controllers
         #region Update
 
         #region get
-        public async Task<IActionResult> Update( int? id)
+        public async Task<IActionResult> Update(int? id)
         {
             if (id == null)
             {
@@ -140,7 +140,7 @@ namespace Travel.Controllers
             }
             Hotel dbHotel = await _db.Hotels
                 .Include(h => h.HotelCategories)
-                .ThenInclude(h=>h.HotelType)
+                .ThenInclude(h => h.HotelType)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (dbHotel == null)
@@ -161,7 +161,7 @@ namespace Travel.Controllers
             }
             hotel.HotelCategories = hotelCategories;
             bool isExist = await _db.Hotels.AnyAsync(h => h.Name == hotel.Name && h.Id != id);
-            if(isExist)
+            if (isExist)
             {
                 ModelState.AddModelError("Name", "This name already is exist");
             }
@@ -189,7 +189,7 @@ namespace Travel.Controllers
                 }
                 string folder = Path.Combine(_env.WebRootPath, "assets", "img");
                 dbHotel.Image = await hotel.Photo.SaveImageAsync(folder);
-            }          
+            }
             dbHotel.Name = hotel.Name;
             dbHotel.IsDomestic = hotel.IsDomestic;
             dbHotel.HotelCategories = hotel.HotelCategories;
@@ -203,7 +203,7 @@ namespace Travel.Controllers
             dbHotel.PhoneNumber = hotel.PhoneNumber;
             dbHotel.WebSite = hotel.WebSite;
             dbHotel.Price = hotel.Price;
-            
+
 
             await _db.SaveChangesAsync();
 
