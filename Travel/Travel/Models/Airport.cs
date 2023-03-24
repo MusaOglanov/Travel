@@ -1,4 +1,7 @@
-﻿namespace Travel.Models
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Travel.Models
 {
     public class Airport
     {
@@ -7,5 +10,8 @@
         public string Country { get; set; }
         public string City { get; set; }
         public string Code { get; set; }
+        public bool IsDeactive { get; set; }
+        [NotMapped]
+        public List<AirlineTicket> AirlineTickets { get; set; }
     }
 }
