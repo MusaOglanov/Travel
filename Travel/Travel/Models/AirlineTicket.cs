@@ -31,6 +31,8 @@ namespace Travel.Models
         public string FlightDescription { get; set; }
         public FlightCategory FlightCategory { get; set; }
         public int FlightCategoryId { get; set; }
+        public FlightClass FlightClass { get; set; }
+        public int FlightClassId { get; set; }
         public string FlightCode { get; set; }
         public bool HassMealService { get; set; }
         public string MealDescription { get; set; }

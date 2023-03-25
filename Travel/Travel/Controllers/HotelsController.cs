@@ -223,12 +223,12 @@ namespace Travel.Controllers
             {
                 return NotFound();
             }
-            Hotel hotel = await _db.Hotels.FirstOrDefaultAsync(h => h.Id == id);
-            if (hotel == null)
+            Hotel dbHotel = await _db.Hotels.FirstOrDefaultAsync(h => h.Id == id);
+            if (dbHotel == null)
             {
                 return BadRequest();
             }
-            return View(hotel);
+            return View(dbHotel);
         }
 
 

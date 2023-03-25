@@ -1,0 +1,21 @@
+﻿@model FlightCategory
+<div class="card-body">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Flight Category Create</h5>
+    </div>
+    <form method="post">
+        <div class="form-group">
+            <label class="form-label" asp-for="Name"></label>
+            <input asp-for="Name" class="form-control">
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+         <div class="form-group">
+            <label class="form-label" asp-for="Info"></label>
+            <textarea asp-for="Info" class="form-control"></textarea>
+            <span class="text-danger" asp-validation-for="Info"></span>
+        </div>
+
+        <a asp-action="index" class="btn btn-dark mr-2">Go Back</a>
+        <button type="submit" class="btn btn-primary mr-2">Send</button>
+    </form>
+</div>
