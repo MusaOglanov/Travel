@@ -161,3 +161,7 @@ C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\FlightC
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\FlightCategories\Create.cshtml.g.cs
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\FlightCategories\Detail.cshtml.g.cs
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\FlightCategories\Update.cshtml.g.cs
+C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\FlightClasses\Index.cshtml.g.cs
+C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\FlightClasses\Create.cshtml.g.cs
+C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\FlightClasses\Update.cshtml.g.cs
+C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\FlightClasses\Detail.cshtml.g.cs

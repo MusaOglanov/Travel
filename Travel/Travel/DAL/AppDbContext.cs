@@ -16,7 +16,7 @@ namespace Travel.DAL
         public DbSet<Airport> Airports { get; set; }
         public DbSet<FlightCategory> FlightCategories { get; set; }
         public DbSet<AirlineTicket> AirlineTickets { get; set; }
-        public DbSet<FlightClass> GetFlightClasses { get; set; }
+        public DbSet<FlightClass> FlightClasses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
