@@ -1,0 +1,185 @@
+﻿@model AirlineTicket
+<div class="card-body">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Hotel  Create</h5>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label class="form-label" asp-for="AirlineCompany"></label>
+            <input  asp-for="AirlineCompany" class="form-control">
+            <span class="text-danger" asp-validation-for="AirlineCompany"></span>
+
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="FlightNumber">  </label>
+            <input asp-for="FlightNumber" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="FlightNumber"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label" asp-for="DepartureAirport"></label>
+            <select  class="form-control" name="depAirId[]">
+                @foreach (Airport depAirport in ViewBag.DepatureAirport)
+                {
+                    <option value="@depAirport.Id">@depAirport.Name</option>
+                }
+            </select>
+            <span class="text-danger" asp-validation-for="DepartureAirport"></span>
+        </div>
+
+         <div class="mb-3">
+            <label class="form-label" asp-for="ArrivalAirport"></label>
+            <select  class="form-control" name="arrAirId[]">
+                @foreach (Airport arrAirport in ViewBag.ArrivalAirport)
+                {
+                    <option value="@arrAirport.Id">@arrAirport.Name</option>
+                }
+            </select>
+            <span class="text-danger" asp-validation-for="ArrivalAirport"></span>
+        </div>
+
+         <div class="mb-3">
+            <label class="form-label" asp-for="TransferAirport">Is Local</label>
+            <select  class="form-control" name="transAirId[]">
+                @foreach (Airport transAirport in ViewBag.TransferAirport)
+                {
+                    <option value="@transAirport.Id">@transAirport.Name</option>
+                }
+            </select>
+            <span class="text-danger" asp-validation-for="TransferAirport"></span>
+        </div>
+
+       
+
+         <div class="mb-3">
+            <label class="form-label" asp-for="SeatClass"></label>
+            <select  class="form-control" name="flightCatId[]">
+                @foreach (SeatClass seatClass in ViewBag.SeatClass)
+                {
+                    <option value="@seatClass.Id">@seatClass.Name</option>
+                }
+            </select>
+            <span class="text-danger" asp-validation-for="SeatClass"></span>
+        </div>
+
+       <div class="form-group">
+
+            <div style="display:flex">
+                <div>
+                    <label asp-for="DepartureDateTime">Departure- Flight Date:</label>
+                    <input asp-for="DepartureDateTime" type="date" id="flightDate" name="flightDate">
+                    <span class="text-danger" asp-validation-for="DepartureDateTime"></span>
+
+                </div>
+                <div style="margin-left: 20px">
+                    <label asp-for="DepartureDateTime"> Flight Time:</label>
+                    <input asp-for="DepartureDateTime" type="time" id="flightTime" name="flightTime">
+                    <span class="text-danger" asp-validation-for="DepartureDateTime"></span>
+
+                </div>
+            </div>
+        </div>
+       <div class="form-group">
+            <div style="display:flex">
+                <div>
+                    <label asp-for="ArrivalDateTime">Arrival Flight Date:</label>
+                    <input asp-for="ArrivalDateTime" type="date" id="flightDate" name="flightDate">
+                    <span class="text-danger" asp-validation-for="ArrivalDateTime"></span>
+
+                </div>
+                <div style="margin-left: 20px">
+                    <label asp-for="ArrivalDateTime">Departure Flight Time:</label>
+                    <input asp-for="ArrivalDateTime" type="time" id="flightTime" name="flightTime">
+                    <span class="text-danger" asp-validation-for="ArrivalDateTime"></span>
+
+                </div>
+            </div>
+        </div>
+      
+        @*   <div class="form-group">
+            <label class="form-label" asp-for="City"></label>
+            <input asp-for="City" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="City"></span>
+        </div>
+
+       <div class="form-group">
+            <label class="form-label" asp-for="Adress"></label>
+            <input asp-for="Adress" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="Adress"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="HotelCategories">Categories</label>
+            <select multiple class="form-control" name="hoteTypesId[]">
+                @foreach (HotelType hotelType in ViewBag.HotelType)
+                {
+                    <option value="@hotelType.Id">@hotelType.Name</option>
+                }
+            </select>
+            <span class="text-danger" asp-validation-for="HotelCategories"></span>
+
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="RoomAvailable">Room Available</label>
+            <input asp-for="RoomAvailable">
+            <span class="text-danger" asp-validation-for="RoomAvailable"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Star" class="form-label"></label>
+            <input asp-for="Star" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="Star"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Rating" class="form-label"></label>
+            <input asp-for="Rating" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="Rating"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label class="form-label" asp-for="Info"></label>
+            <textarea asp-for="Info" type="text" class="form-control"></textarea>
+            <span class="text-danger" asp-validation-for="Info"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="Email"></label>
+            <input asp-for="Email" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="Email"></span>
+
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PhoneNumber">Telephone</label>
+
+            <input asp-for="PhoneNumber" type="tel" class="form-control">
+            <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+
+
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" asp-for="WebSite"></label>
+            <input asp-for="WebSite" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="WebSite"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" asp-for="Price"></label>
+
+            <input asp-for="Price" type="text" class="form-control">
+            <span class="text-danger" asp-validation-for="Price"></span>
+
+        </div>*@
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a asp-action="index" class="btn btn-secondary text-white">Go Back</a>
+    </form>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

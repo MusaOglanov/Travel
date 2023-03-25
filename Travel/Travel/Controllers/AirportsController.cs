@@ -97,7 +97,7 @@ namespace Travel.Controllers
                 return BadRequest();
             }
 
-            bool IsExist=await _db.Airports.AnyAsync(t=>t.Name== airport.Name&&t.Id!=id);
+            bool IsExist = await _db.Airports.AnyAsync(t => t.Name == airport.Name && t.Id != id);
             if (IsExist)
             {
                 ModelState.AddModelError("Name", "Bu ad daha əvvəl istifadə olunub");
@@ -105,7 +105,7 @@ namespace Travel.Controllers
             }
 
 
-            bool IsCodeExist = await _db.Airports.AnyAsync(t => t.Code == airport.Code&&t.Id != id);
+            bool IsCodeExist = await _db.Airports.AnyAsync(t => t.Code == airport.Code && t.Id != id);
             if (IsCodeExist)
             {
                 ModelState.AddModelError("Code", "Bu kod daha əvvəl istifadə olunub");

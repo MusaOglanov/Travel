@@ -157,12 +157,9 @@ C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\Hotels\
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\Airports\Index.cshtml.g.cs
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\Airports\Create.cshtml.g.cs
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\Airports\Update.cshtml.g.cs
-C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\FlightCategories\Index.cshtml.g.cs
-C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\FlightCategories\Create.cshtml.g.cs
-C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\FlightCategories\Detail.cshtml.g.cs
-C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\FlightCategories\Update.cshtml.g.cs
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\AirlineTickets\Index.cshtml.g.cs
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\SeatClasses\Create.cshtml.g.cs
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\SeatClasses\Detail.cshtml.g.cs
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\SeatClasses\Index.cshtml.g.cs
 C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\SeatClasses\Update.cshtml.g.cs
+C:\Users\musac\Desktop\Travel\Travel\Travel\obj\Debug\net5.0\Razor\Views\AirlineTickets\Create.cshtml.g.cs

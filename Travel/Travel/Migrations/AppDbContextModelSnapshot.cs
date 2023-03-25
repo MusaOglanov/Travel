@@ -48,15 +48,6 @@ namespace Travel.Migrations
                     b.Property<DateTime>("DepartureDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FlightCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("FlightCategoryId1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FlightClassId")
-                        .HasColumnType("int");
-
                     b.Property<string>("FlightCode")
                         .HasColumnType("nvarchar(max)");
 
@@ -69,13 +60,13 @@ namespace Travel.Migrations
                     b.Property<string>("FlightNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FlightType")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("HassMealService")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeactive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsReturn")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsTransfer")
@@ -84,8 +75,11 @@ namespace Travel.Migrations
                     b.Property<string>("MealDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SeatType")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ReturnAirportId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SeatClassId")
+                        .HasColumnType("int");
 
                     b.Property<int>("TicketPrice")
                         .HasColumnType("int");
@@ -99,11 +93,9 @@ namespace Travel.Migrations
 
                     b.HasIndex("DepartureAirportId");
 
-                    b.HasIndex("FlightCategoryId");
+                    b.HasIndex("ReturnAirportId");
 
-                    b.HasIndex("FlightCategoryId1");
-
-                    b.HasIndex("FlightClassId");
+                    b.HasIndex("SeatClassId");
 
                     b.HasIndex("TransferAirportId");
 
@@ -136,48 +128,6 @@ namespace Travel.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Airports");
-                });
-
-            modelBuilder.Entity("Travel.Models.FlightCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Info")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeactive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FlightCategories");
-                });
-
-            modelBuilder.Entity("Travel.Models.FlightClass", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Info")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeactive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GetFlightClasses");
                 });
 
             modelBuilder.Entity("Travel.Models.Hotel", b =>
@@ -279,6 +229,28 @@ namespace Travel.Migrations
                     b.ToTable("HotelTypes");
                 });
 
+            modelBuilder.Entity("Travel.Models.SeatClass", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Info")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("IsDeactive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SeatClasses");
+                });
+
             modelBuilder.Entity("Travel.Models.AirlineTicket", b =>
                 {
                     b.HasOne("Travel.Models.Airport", "ArrivalAirport")
@@ -293,19 +265,15 @@ namespace Travel.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Travel.Models.FlightCategory", "FlightCategory")
+                    b.HasOne("Travel.Models.Airport", "ReturnAirport")
                         .WithMany()
-                        .HasForeignKey("FlightCategoryId")
+                        .HasForeignKey("ReturnAirportId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Travel.Models.FlightCategory", null)
+                    b.HasOne("Travel.Models.SeatClass", "SeatClass")
                         .WithMany("AirlineTickets")
-                        .HasForeignKey("FlightCategoryId1");
-
-                    b.HasOne("Travel.Models.FlightClass", "FlightClass")
-                        .WithMany("AirlineTickets")
-                        .HasForeignKey("FlightClassId")
+                        .HasForeignKey("SeatClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -319,9 +287,9 @@ namespace Travel.Migrations
 
                     b.Navigation("DepartureAirport");
 
-                    b.Navigation("FlightCategory");
+                    b.Navigation("ReturnAirport");
 
-                    b.Navigation("FlightClass");
+                    b.Navigation("SeatClass");
 
                     b.Navigation("TransferAirport");
                 });
@@ -345,16 +313,6 @@ namespace Travel.Migrations
                     b.Navigation("HotelType");
                 });
 
-            modelBuilder.Entity("Travel.Models.FlightCategory", b =>
-                {
-                    b.Navigation("AirlineTickets");
-                });
-
-            modelBuilder.Entity("Travel.Models.FlightClass", b =>
-                {
-                    b.Navigation("AirlineTickets");
-                });
-
             modelBuilder.Entity("Travel.Models.Hotel", b =>
                 {
                     b.Navigation("HotelCategories");
@@ -363,6 +321,11 @@ namespace Travel.Migrations
             modelBuilder.Entity("Travel.Models.HotelType", b =>
                 {
                     b.Navigation("HotelCategories");
+                });
+
+            modelBuilder.Entity("Travel.Models.SeatClass", b =>
+                {
+                    b.Navigation("AirlineTickets");
                 });
 #pragma warning restore 612, 618
         }

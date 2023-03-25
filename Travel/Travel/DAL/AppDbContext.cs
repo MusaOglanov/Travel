@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Travel.Models;
 
 namespace Travel.DAL
@@ -14,7 +15,6 @@ namespace Travel.DAL
         public DbSet<HotelType> HotelTypes { get; set; }
         public DbSet<HotelCategory> HotelCategories { get; set; }
         public DbSet<Airport> Airports { get; set; }
-        public DbSet<FlightCategory> FlightCategories { get; set; }
         public DbSet<AirlineTicket> AirlineTickets { get; set; }
         public DbSet<SeatClass> SeatClasses { get; set; }
 
@@ -33,16 +33,23 @@ namespace Travel.DAL
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<AirlineTicket>()
-                .HasOne(t => t.TransferAirport)
-                .WithMany()
-                .HasForeignKey(t => t.TransferAirportId)
-                .OnDelete(DeleteBehavior.Restrict);
+               .HasOne(t => t.TransferAirport)
+               .WithMany()
+               .HasForeignKey(t => t.TransferAirportId)
+               .OnDelete(DeleteBehavior.Restrict);
 
-           
+            modelBuilder.Entity<AirlineTicket>()
+                .HasOne(t => t.ReturnAirport)
+                .WithMany()
+                .HasForeignKey(t => t.ReturnAirportId)
+                .OnDelete(DeleteBehavior.Restrict);
+            
+
+
         }
 
-
-
-
     }
+
+
+    
 }

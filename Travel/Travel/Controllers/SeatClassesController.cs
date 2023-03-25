@@ -89,7 +89,7 @@ namespace Travel.Controllers
         #region post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(SeatClass seatClass , int? id)
+        public async Task<IActionResult> Update(SeatClass seatClass, int? id)
         {
             if (id == null)
             {
@@ -101,11 +101,11 @@ namespace Travel.Controllers
                 return BadRequest();
             }
 
-           bool IsExist=await _db.SeatClasses.AnyAsync(f=>f.Name== dbSeatClass.Name&&f.Id!=id);
+            bool IsExist = await _db.SeatClasses.AnyAsync(f => f.Name == dbSeatClass.Name && f.Id != id);
             if (IsExist)
             {
                 ModelState.AddModelError("Name", "Bu ad daha Əvvəl istifadə edilib!");
-                return View (dbSeatClass);
+                return View(dbSeatClass);
             }
             dbSeatClass.Name = seatClass.Name;
             dbSeatClass.Info = seatClass.Info;

@@ -22,7 +22,6 @@ namespace Travel.Controllers
                  .Include(a => a.DepartureAirport)
                  .Include(a => a.ArrivalAirport)
                  .Include(a => a.TransferAirport)
-                 .Include(a => a.FlightCategory)
                  .Include(a => a.SeatClass)
                  .ToListAsync();
             return View(tickets);
@@ -33,9 +32,12 @@ namespace Travel.Controllers
         #region Create
 
         #region get
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-
+            ViewBag.DepatureAirport = await _db.Airports.ToListAsync();
+            ViewBag.ArrivalAirport = await _db.Airports.ToListAsync();
+            ViewBag.TransferAirport = await _db.Airports.ToListAsync();
+            ViewBag.SeatClass = await _db.SeatClasses.ToListAsync();
 
 
             return View();

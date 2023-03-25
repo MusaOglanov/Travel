@@ -17,6 +17,9 @@ namespace Travel.Models
         public bool IsTransfer { get; set; }
         public int TransferAirportId { get; set; }
         public Airport TransferAirport { get; set; }
+        public bool IsReturn { get; set; }
+        public int ReturnAirportId { get; set; }
+        public Airport ReturnAirport { get; set; }
         public DateTime DepartureDateTime { get; set; }
         public DateTime ArrivalDateTime { get; set; }
         public int TicketPrice { get; set; }
@@ -24,8 +27,6 @@ namespace Travel.Models
         public string BaggageAllowance { get; set; }
         public string CarryOnAllowance { get; set; }
         public string FlightDescription { get; set; }
-        public FlightCategory FlightCategory { get; set; }
-        public int FlightCategoryId { get; set; }
         public SeatClass SeatClass { get; set; }
         public int SeatClassId { get; set; }
         public string FlightCode { get; set; }
