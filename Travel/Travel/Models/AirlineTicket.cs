@@ -23,13 +23,11 @@ namespace Travel.Models
         public TimeSpan FlightDuration { get; set; }
         public string BaggageAllowance { get; set; }
         public string CarryOnAllowance { get; set; }
-        public string SeatType { get; set; }
-        public string FlightType { get; set; }
         public string FlightDescription { get; set; }
         public FlightCategory FlightCategory { get; set; }
         public int FlightCategoryId { get; set; }
-        public FlightClass FlightClass { get; set; }
-        public int FlightClassId { get; set; }
+        public SeatClass SeatClass { get; set; }
+        public int SeatClassId { get; set; }
         public string FlightCode { get; set; }
         public bool HassMealService { get; set; }
         public string MealDescription { get; set; }

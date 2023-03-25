@@ -16,7 +16,7 @@ namespace Travel.DAL
         public DbSet<Airport> Airports { get; set; }
         public DbSet<FlightCategory> FlightCategories { get; set; }
         public DbSet<AirlineTicket> AirlineTickets { get; set; }
-        public DbSet<FlightClass> FlightClasses { get; set; }
+        public DbSet<SeatClass> SeatClasses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,11 +38,7 @@ namespace Travel.DAL
                 .HasForeignKey(t => t.TransferAirportId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<AirlineTicket>()
-                .HasOne(t => t.FlightCategory)
-                .WithMany()
-                .HasForeignKey(t => t.FlightCategoryId)
-                .OnDelete(DeleteBehavior.Restrict);
+           
         }
 
 

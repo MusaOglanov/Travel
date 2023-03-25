@@ -7,16 +7,16 @@ using Travel.Models;
 
 namespace Travel.Controllers
 {
-    public class FlightClassesController : Controller
+    public class SeatClassesController : Controller
     {
         private readonly AppDbContext _db;
-        public FlightClassesController(AppDbContext db)
+        public SeatClassesController(AppDbContext db)
         {
             _db = db;
         }
         public async Task<IActionResult> Index()
         {
-            List<FlightClass> classes = await _db.FlightClasses.ToListAsync();
+            List<SeatClass> classes = await _db.SeatClasses.ToListAsync();
             return View(classes);
         }
 
@@ -32,9 +32,9 @@ namespace Travel.Controllers
         #region post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(FlightClass flightclass)
+        public async Task<IActionResult> Create(SeatClass seatClass)
         {
-            bool IsExist = await _db.FlightClasses.AnyAsync(t => t.Name == flightclass.Name);
+            bool IsExist = await _db.SeatClasses.AnyAsync(t => t.Name == seatClass.Name);
             if (IsExist)
             {
                 ModelState.AddModelError("Name", "This name already is exist");
@@ -42,7 +42,7 @@ namespace Travel.Controllers
             }
 
 
-            await _db.FlightClasses.AddAsync(flightclass);
+            await _db.SeatClasses.AddAsync(seatClass);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -57,13 +57,13 @@ namespace Travel.Controllers
             {
                 return NotFound();
             }
-            FlightClass dbClass = await _db.FlightClasses.FirstOrDefaultAsync(f => f.Id == id);
-            if (dbClass == null)
+            SeatClass dbSeatClass = await _db.SeatClasses.FirstOrDefaultAsync(f => f.Id == id);
+            if (dbSeatClass == null)
             {
                 return BadRequest();
             }
 
-            return View(dbClass);
+            return View(dbSeatClass);
         }
         #endregion
 
@@ -76,39 +76,39 @@ namespace Travel.Controllers
             {
                 return NotFound();
             }
-            FlightClass dbClass = await _db.FlightClasses.FirstOrDefaultAsync(f => f.Id == id);
-            if (dbClass == null)
+            SeatClass dbSeatClass = await _db.SeatClasses.FirstOrDefaultAsync(f => f.Id == id);
+            if (dbSeatClass == null)
             {
                 return BadRequest();
             }
 
-            return View(dbClass);
+            return View(dbSeatClass);
         }
         #endregion
 
         #region post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(FlightClass flightClass , int? id)
+        public async Task<IActionResult> Update(SeatClass seatClass , int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            FlightClass dbClass = await _db.FlightClasses.FirstOrDefaultAsync(f => f.Id == id);
-            if (dbClass == null)
+            SeatClass dbSeatClass = await _db.SeatClasses.FirstOrDefaultAsync(f => f.Id == id);
+            if (dbSeatClass == null)
             {
                 return BadRequest();
             }
 
-           bool IsExist=await _db.FlightClasses.AnyAsync(f=>f.Name==flightClass.Name&&f.Id!=id);
+           bool IsExist=await _db.SeatClasses.AnyAsync(f=>f.Name== dbSeatClass.Name&&f.Id!=id);
             if (IsExist)
             {
                 ModelState.AddModelError("Name", "Bu ad daha Əvvəl istifadə edilib!");
-                return View (dbClass);
+                return View (dbSeatClass);
             }
-            dbClass.Name = flightClass.Name;
-            dbClass.Info = flightClass.Info;
+            dbSeatClass.Name = seatClass.Name;
+            dbSeatClass.Info = seatClass.Info;
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -123,20 +123,20 @@ namespace Travel.Controllers
             {
                 return NotFound();
             }
-            FlightClass dbClass = await _db.FlightClasses.FirstOrDefaultAsync(t => t.Id == id);
+            SeatClass dbSeatClass = await _db.SeatClasses.FirstOrDefaultAsync(t => t.Id == id);
 
-            if (dbClass == null)
+            if (dbSeatClass == null)
             {
                 return BadRequest();
             }
 
-            if (dbClass.IsDeactive)
+            if (dbSeatClass.IsDeactive)
             {
-                dbClass.IsDeactive = false;
+                dbSeatClass.IsDeactive = false;
             }
             else
             {
-                dbClass.IsDeactive = true;
+                dbSeatClass.IsDeactive = true;
             }
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");

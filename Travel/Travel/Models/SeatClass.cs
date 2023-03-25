@@ -2,7 +2,7 @@
 
 namespace Travel.Models
 {
-    public class FlightClass
+    public class SeatClass
     {
         public int Id { get; set; }
         public string Name { get; set; }

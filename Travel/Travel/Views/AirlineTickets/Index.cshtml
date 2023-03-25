@@ -1,0 +1,114 @@
+﻿@model List<AirlineTicket>
+<div class="col-12">
+    <div class="card">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-header">AirlineTickets</h5>
+            <a asp-action="Create" class="btn rounded-pill btn-primary text-white " style="margin-right:20px">Create</a>
+        </div>
+        <div class="card-body">
+            <div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-striped dataTable no-footer" id="table-1" role="grid" aria-describedby="table-1_info">
+                            <thead>
+                                <tr role="row">
+
+                                    <th>Airline Company</th>
+                                    <th>Departure Airport</th>
+                                    <th>Countr</th>
+                                    <th>City</th>
+
+                                    <th>Arrival Airport</th>
+                                    <th>Transfer Airport</th>
+                                    <th>Departure Date</th>
+                                   
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th style="text-align:right">Actions</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (AirlineTicket item in Model)
+                                {
+                                    <tr>
+                                       
+                                       
+                                         <td>
+                                            @item.AirlineCompany
+                                        </td>
+                                         <td>
+                                            @item.DepartureAirport.Name
+                                        </td>
+  <td>
+                                            @item.DepartureAirport.Country
+                                        </td>
+
+                                        <td>
+                                            @item.DepartureAirport.City
+                                        </td>
+                                          <td>
+                                            @item.ArrivalAirport.Name
+                                        </td>
+                                          <td>
+                                            @item.TransferAirport.Name
+                                        </td>
+                                           <td>
+                                            @item.DepartureDateTime
+                                        </td>
+                                          <td>
+                                            @item.TicketPrice
+                                        </td>
+
+                                      
+
+                                       
+
+                                      
+
+                                        <td>
+                                            @if (item.IsDeactive)
+                                            {
+                                                <span class="text-danger">Passiv</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-success">Active</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <div class="d-flex justify-content-end">
+                                                <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm" style="margin-right:5px">
+                                                    <i class="fas fa-edit mr-1"></i> Update
+                                                </a>
+                                                <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-outline-info btn-sm" style="margin-right:5px">
+                                                    <i class="far fa-eye"></i> Detail
+                                                </a>
+                                                @if (item.IsDeactive)
+                                                {
+                                                    <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-outline-success btn-sm" style="margin-right:5px">  <i class="fas fa-trash-alt mr-1"></i> Activate</a>
+
+                                                }
+                                                else
+                                                {
+                                                    <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm" style="margin-right:5px">  <i class="fas fa-trash-alt mr-1"></i>DeActivate</a>
+
+                                                }
+
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
