@@ -22,6 +22,7 @@ namespace Travel.Controllers
                  .Include(a => a.DepartureAirport)
                  .Include(a => a.ArrivalAirport)
                  .Include(a => a.TransferAirport)
+                 .Include(a => a.ReturnAirport)
                  .Include(a => a.SeatClass)
                  .ToListAsync();
             return View(tickets);
@@ -37,6 +38,7 @@ namespace Travel.Controllers
             ViewBag.DepatureAirport = await _db.Airports.ToListAsync();
             ViewBag.ArrivalAirport = await _db.Airports.ToListAsync();
             ViewBag.TransferAirport = await _db.Airports.ToListAsync();
+            ViewBag.ReturnAirport = await _db.Airports.ToListAsync();
             ViewBag.SeatClass = await _db.SeatClasses.ToListAsync();
 
 

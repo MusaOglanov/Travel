@@ -24,8 +24,9 @@ namespace Travel.Models
         public DateTime ArrivalDateTime { get; set; }
         public int TicketPrice { get; set; }
         public TimeSpan FlightDuration { get; set; }
+        public bool HassBaggage { get; set; }
         public string BaggageAllowance { get; set; }
-        public string CarryOnAllowance { get; set; }
+        public string Handluggage { get; set; }
         public string FlightDescription { get; set; }
         public SeatClass SeatClass { get; set; }
         public int SeatClassId { get; set; }

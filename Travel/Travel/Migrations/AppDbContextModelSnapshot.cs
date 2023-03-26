@@ -39,9 +39,6 @@ namespace Travel.Migrations
                     b.Property<string>("BaggageAllowance")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CarryOnAllowance")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("DepartureAirportId")
                         .HasColumnType("int");
 
@@ -59,6 +56,12 @@ namespace Travel.Migrations
 
                     b.Property<string>("FlightNumber")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Handluggage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HassBaggage")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("HassMealService")
                         .HasColumnType("bit");
