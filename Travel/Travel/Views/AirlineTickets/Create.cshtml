@@ -1,4 +1,6 @@
-﻿@model AirlineTicket
+﻿int totalPrice=0
+@model AirlineTicket
+
 <div class="card-body">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="mb-0">Hotel  Create</h5>
@@ -7,7 +9,7 @@
 
         <div class="form-group">
             <label class="form-label" asp-for="AirlineCompany"></label>
-            <input  asp-for="AirlineCompany" class="form-control">
+            <input asp-for="AirlineCompany" class="form-control">
             <span class="text-danger" asp-validation-for="AirlineCompany"></span>
 
         </div>
@@ -18,61 +20,89 @@
             <span class="text-danger" asp-validation-for="FlightNumber"></span>
         </div>
 
-
         <div class="mb-3">
             <label class="form-label" asp-for="DepartureAirport"></label>
-            <select  class="form-control" name="depAirId[]">
-                @foreach (Airport depAirport in ViewBag.DepatureAirport)
+            <select class="form-control" name="depAirId">
+                @foreach (Airport depAirport in ViewBag.DepartureAirport)
                 {
-                    <option value="@depAirport.Id">@depAirport.Name</option>
+                    <option value="@depAirport.Id">@depAirport.Name  @depAirport.Code</option>
                 }
             </select>
             <span class="text-danger" asp-validation-for="DepartureAirport"></span>
         </div>
 
-         <div class="mb-3">
+        <div class="mb-3">
             <label class="form-label" asp-for="ArrivalAirport"></label>
-            <select  class="form-control" name="arrAirId[]">
+            <select class="form-control" name="arrAirId">
                 @foreach (Airport arrAirport in ViewBag.ArrivalAirport)
                 {
-                    <option value="@arrAirport.Id">@arrAirport.Name</option>
+                    <option value="@arrAirport.Id">@arrAirport.Name  @arrAirport.Code</option>
                 }
             </select>
             <span class="text-danger" asp-validation-for="ArrivalAirport"></span>
         </div>
+
+
+
         <div class="mb-3">
             <label class="form-label" asp-for="IsReturn">  </label>
             <input asp-for="IsReturn">
             <span class="text-danger" asp-validation-for="IsReturn"></span>
         </div>
 
-        <div class="mb-3">
-            <label class="form-label" asp-for="ReturnAirport"></label>
-            <select class="form-control" name="reAirportId[]">
-                @foreach (Airport reAirport in ViewBag.ReturnAirport)
-                {
-                    <option value="@reAirport.Id">@reAirport.Name</option>
-                }
-            </select>
-            <span class="text-danger" asp-validation-for="ReturnAirport"></span>
+        <div class="mb-3 d-none" id="ReAirport">
+            <div class="mb-3   ">
+                <label class="form-label" asp-for="ReturnAirport"></label>
+                <select class="form-control " name="reAirId">
+                    @foreach (Airport returnAirport in ViewBag.ReturnAirport)
+                    {
+                        <option value="@returnAirport.Id">@returnAirport.Name  @returnAirport.Code</option>
+                    }
+                </select>
+                <span class="text-danger" asp-validation-for="ReturnAirport"></span>
+            </div>
+            <div class="col-2  ">
+                <label class="form-label" asp-for="ReturnPrice"></label>
+                <input  asp-for="ReturnPrice" type="text" class="form-control">
+                <span class="text-danger" asp-validation-for="ReturnPrice"></span>
+            </div>
+           
         </div>
 
-         <div class="mb-3">
-            <label class="form-label" asp-for="TransferAirport"></label>
-            <select  class="form-control" name="transAirId[]">
-                @foreach (Airport transAirport in ViewBag.TransferAirport)
-                {
-                    <option value="@transAirport.Id">@transAirport.Name</option>
-                }
-            </select>
-            <span class="text-danger" asp-validation-for="TransferAirport"></span>
+
+        <div class="mb-3">
+            <label class="form-label" asp-for="IsTransfer">  </label>
+            <input asp-for="IsTransfer">
+            <span class="text-danger" asp-validation-for="IsTransfer"></span>
         </div>
+
+        <div class="mb-3 d-none" id="TransAiport">
+            <div class="mb-3 " >
+                <label class="form-label">Transfer Airport</label>
+                <select class="form-control" name="transAirId">
+                    @foreach (Airport transAirport in ViewBag.TransferAirport)
+                    {
+                        <option value="@transAirport.Id">@transAirport.Name  @transAirport.Code</option>
+                    }
+                </select>
+                <span class="text-danger" asp-validation-for="TransferAirport"></span>
+                <div class="col-2  ">
+                    <label class="form-label" asp-for="TransferPrice"></label>
+                    <input asp-for="TransferPrice" type="text" class="form-control">
+                    <span class="text-danger" asp-validation-for="TransferPrice"></span>
+                </div>
+            </div>
+        </div>
+      
+
+
+
 
        
 
-         <div class="mb-3">
-            <label class="form-label" asp-for="SeatClass"></label>
-            <select  class="form-control" name="flightCatId[]">
+        <div class="mb-3">
+            <label class="form-label">Seat Class</label>
+            <select class="form-control" name="seatClassId">
                 @foreach (SeatClass seatClass in ViewBag.SeatClass)
                 {
                     <option value="@seatClass.Id">@seatClass.Name</option>
@@ -81,51 +111,32 @@
             <span class="text-danger" asp-validation-for="SeatClass"></span>
         </div>
 
-       <div class="form-group">
+        <div class="form-group">
 
-            <div style="display:flex">
-                <div>
-                    <label asp-for="DepartureDateTime">Departure- Flight Date:</label>
-                    <input style="margin-left: 20px" asp-for="DepartureDateTime" type="date" id="flightDate" name="flightDate">
-                    <span class="text-danger" asp-validation-for="DepartureDateTime"></span>
-
-                </div>
-
-                <div style="margin-left: 20px">
-                    <label asp-for="DepartureDateTime"> Flight Time:</label>
-                    <input  asp-for="DepartureDateTime" type="time" id="flightTime" name="flightTime">
-                    <span class="text-danger" asp-validation-for="DepartureDateTime"></span>
-
-                </div>
-                <div style="margin-left: 50px">
-                    <label asp-for="FlightDuration">Flight Duration Time:</label>
-                    <input  asp-for="FlightDuration" type="time" id="flightTime" name="flightTime">
-                    <span class="text-danger" asp-validation-for="FlightDuration"></span>
-
-                </div>
+            <div class="form-group">
+                <label asp-for="DepartureDateTime">Departure- Flight Date:</label>
+                <input asp-for="DepartureDateTime" type="date" name="departureDate">
+                <span class="text-danger" asp-validation-for="DepartureDateTime"></span>
+                <input asp-for="DepartureDateTime" type="time" name="departureTime">
+                <span class="text-danger" asp-validation-for="DepartureDateTime"></span>
             </div>
-        </div>
-       <div class="form-group">
-            <div style="display:flex">
-                <div style="margin-right: 20px">
-                    <label asp-for="ArrivalDateTime">Arrival Flight Date:</label>
-                    <input style="margin-left: 50px" asp-for="ArrivalDateTime" type="date" id="flightDate" name="flightDate">
-                    <span class="text-danger" asp-validation-for="ArrivalDateTime"></span>
 
-                </div>
-                <div >
-                    <label asp-for="ArrivalDateTime">Arrival Flight Time:</label>
-                    <input asp-for="ArrivalDateTime" type="time" id="flightTime" name="flightTime">
-                    <span class="text-danger" asp-validation-for="ArrivalDateTime"></span>
-
-                </div>
-              
+            <div class="form-group">
+                <label asp-for="FlightDuration">Flight Duration Time:</label>
+                <input asp-for="FlightDuration" type="text" pattern="[0-9]{1,2}:[0-9]{1,2}" placeholder="hh:mm" />
+                <span class="text-danger" asp-validation-for="FlightDuration"></span>
             </div>
-           
+
+            <div class="form-group">
+                <label asp-for="ArrivalDateTime">Arrival Flight Date:</label>
+                <input asp-for="ArrivalDateTime" type="date" name="arrivalDate">
+                <span class="text-danger" asp-validation-for="ArrivalDateTime"></span>
+                <input asp-for="ArrivalDateTime" type="time" name="arrivalTime">
+                <span class="text-danger" asp-validation-for="ArrivalDateTime"></span>
+            </div>
+
         </div>
-
-        
-
+      
         <div class="form-group">
             <label class="form-label" asp-for="TicketPrice"></label>
             <input asp-for="TicketPrice" type="text" class="form-control">
@@ -137,36 +148,48 @@
             <span class="text-danger" asp-validation-for="Handluggage"></span>
         </div>
         <div class="mb-3">
-            <label class="form-label" asp-for="HassBaggage"></label>
-            <input asp-for="HassBaggage" >
+            <label asp-for="HassBaggage" class="form-label"></label>
+            <input asp-for="HassBaggage">
             <span class="text-danger" asp-validation-for="HassBaggage"></span>
         </div>
-        <div class="form-group">
-            <label class="form-label" asp-for="BaggageAllowance"></label>
-            <input asp-for="BaggageAllowance" type="text" class="form-control">
-            <span class="text-danger" asp-validation-for="BaggageAllowance"></span>
-        </div>
+        <div class="mb-3 d-none" id="BaggageId">
+            <div class="mb-3">
+                <label class="form-label" asp-for="BaggageAllowance"></label>
+                <input asp-for="BaggageAllowance" type="text" class="form-control">
+                <span class="text-danger" asp-validation-for="BaggageAllowance"></span>
+            </div>
+            <div class="mb-3 col-2">
+                <label class="form-label" asp-for="BaggagePrice"></label>
+                <input asp-for="BaggagePrice" type="text" class="form-control">
+                <span class="text-danger" asp-validation-for="BaggagePrice"></span>
+            </div>
+        </div >
+       
         <div class="form-group">
             <label class="form-label" asp-for="FlightDescription"></label>
             <textarea asp-for="FlightDescription" type="text" class="form-control"></textarea>
             <span class="text-danger" asp-validation-for="FlightDescription"></span>
         </div>
 
-          <div class="form-group">
-            <label asp-for="FlightCode" class="form-label"></label>
-            <input asp-for="FlightCode" type="text" class="form-control">
-            <span class="text-danger" asp-validation-for="FlightCode"></span>
-        </div>
-       <div class="mb-3">
+
+        <div class="mb-3">
             <label asp-for="HassMealService" class="form-label"></label>
             <input asp-for="HassMealService">
             <span class="text-danger" asp-validation-for="HassMealService"></span>
         </div>
-          <div class="form-group">
-            <label asp-for="MealDescription" class="form-label"></label>
-            <textarea asp-for="MealDescription" type="text" class="form-control"></textarea>
-            <span class="text-danger" asp-validation-for="MealDescription"></span>
+        <div class="mb-3 d-none" id="MealDesc">
+            <div class="mb-3">
+                <label asp-for="MealDescription" class="form-label"></label>
+                <textarea asp-for="MealDescription" type="text" class="form-control"></textarea>
+                <span class="text-danger" asp-validation-for="MealDescription"></span>
+            </div>
+            <div class="form-group col-2" >
+                <label asp-for="MealPrice" class="form-label"></label>
+                <input asp-for="MealPrice" type="text" class="form-control">
+                <span class="text-danger" asp-validation-for="MealPrice"></span>
+            </div>
         </div>
+      
 
 
 
@@ -176,4 +199,75 @@
 </div>
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        if ($('#IsReturn').prop('checked')) {
+            $('#ReAirport').removeClass("d-none")
+        }
+        else {
+            $('#ReAirport').addClass("d-none")
+            $('#IsReturn').removeClass("d-none")
+
+        }
+        $(document).on("change", "#IsReturn", function () {
+            if ($('#IsReturn').prop('checked')) {
+                $('#ReAirport').removeClass("d-none")
+            }
+            else {
+                $('#ReAirport').addClass("d-none")
+
+            }
+        });
+
+        if ($('#IsTransfer').prop('checked')) {
+            $('#TransAiport').removeClass("d-none")
+        }
+        else {
+            $('#TransAiport').addClass("d-none")
+            $('#IsTransfer').removeClass("d-none")
+
+        }
+        $(document).on("change", "#IsTransfer", function () {
+            if ($('#IsTransfer').prop('checked')) {
+                $('#TransAiport').removeClass("d-none")
+            }
+            else {
+                $('#TransAiport').addClass("d-none")
+
+            }
+        });
+        if ($('#HassMealService').prop('checked')) {
+            $('#MealDesc').removeClass("d-none")
+        }
+        else {
+            $('#MealDesc').addClass("d-none")
+            $('#HassMealService').removeClass("d-none")
+
+        }
+        $(document).on("change", "#HassMealService", function () {
+            if ($('#HassMealService').prop('checked')) {
+                $('#MealDesc').removeClass("d-none")
+            }
+            else {
+                $('#MealDesc').addClass("d-none")
+
+            }
+        });
+        if ($('#HassBaggage').prop('checked')) {
+            $('#BaggageId').removeClass("d-none")
+        }
+        else {
+            $('#BaggageId').addClass("d-none")
+            $('#HassBaggage').removeClass("d-none")
+
+        }
+        $(document).on("change", "#HassBaggage", function () {
+            if ($('#HassBaggage').prop('checked')) {
+                $('#BaggageId').removeClass("d-none")
+            }
+            else {
+                $('#BaggageId').addClass("d-none")
+
+            }
+        });
+    </script>
 }

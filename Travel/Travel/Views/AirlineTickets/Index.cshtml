@@ -21,6 +21,7 @@
                                     <th>Arrival Airport</th>
                                     <th>Transfer Airport</th>
                                     <th>Departure Date</th>
+                                    <th>Flight Duration</th>
                                    
                                     <th>Price</th>
                                     <th>Status</th>
@@ -57,6 +58,9 @@
                                            <td>
                                             @item.DepartureDateTime
                                         </td>
+                                        <td>@item.FlightDuration.ToString("hh'saat 'mm'dəq'")</td>
+
+
                                           <td>
                                             @item.TicketPrice
                                         </td>

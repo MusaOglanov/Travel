@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Travel.DAL;
 using Travel.Models;
 
@@ -35,7 +37,7 @@ namespace Travel.Controllers
         #region get
         public async Task<IActionResult> Create()
         {
-            ViewBag.DepatureAirport = await _db.Airports.ToListAsync();
+            ViewBag.DepartureAirport = await _db.Airports.ToListAsync();
             ViewBag.ArrivalAirport = await _db.Airports.ToListAsync();
             ViewBag.TransferAirport = await _db.Airports.ToListAsync();
             ViewBag.ReturnAirport = await _db.Airports.ToListAsync();
@@ -47,7 +49,58 @@ namespace Travel.Controllers
         #endregion
 
         #region post
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(AirlineTicket ticket, int depAirId, int arrAirId, int reAirId, int transAirId, int seatClassId,string departureDate, string departureTime, string flightDuration, string arrivalDate, string arrivalTime)
+        {
+            ViewBag.DepartureAirport = await _db.Airports.ToListAsync();
+            ViewBag.ArrivalAirport = await _db.Airports.ToListAsync();
+            ViewBag.TransferAirport = await _db.Airports.ToListAsync();
+            ViewBag.ReturnAirport = await _db.Airports.ToListAsync();
+            ViewBag.SeatClass = await _db.SeatClasses.ToListAsync();
 
+            if (arrAirId == depAirId)
+            {
+                ModelState.AddModelError("ArrivalAirport", "Gediş və Eniş Aeroportları eyni ola bilməz");
+                return View();
+            }
+            if (depAirId == transAirId || arrAirId == transAirId)
+            {
+                ModelState.AddModelError("TransferAirport", "Aeroportlar eyni ola bilməz");
+                return View();
+            }
+            if(depAirId == reAirId || transAirId == reAirId)
+            {
+                ModelState.AddModelError("ReturnAirport", "Aeroportlar eyni ola bilməz");
+                return View();
+            }
+
+            string departureDateTimeStr = $"{departureDate} {departureTime}";
+            string arrivalDateTimeStr = $"{arrivalDate} {arrivalTime}";
+
+            DateTime departureDateTime = DateTime.Parse(departureDateTimeStr);
+            ticket.DepartureDateTime = departureDateTime;
+
+            TimeSpan flightDurationTime = TimeSpan.Parse(flightDuration);
+            ticket.FlightDuration = flightDurationTime;
+
+            DateTime arrivalDateTime = DateTime.Parse(arrivalDateTimeStr);
+            ticket.ArrivalDateTime = arrivalDateTime;
+
+            ticket.TicketPrice += ticket.ReturnPrice + ticket.TransferPrice + ticket.BaggagePrice + ticket.MealPrice;
+
+
+
+            ticket.DepartureAirportId = depAirId;
+            ticket.ArrivalAirportId = arrAirId;
+            ticket.ReturnAirportId = reAirId;
+            ticket.TransferAirportId = transAirId;
+            ticket.SeatClassId = seatClassId;
+            await _db.AirlineTickets.AddAsync(ticket);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
         #endregion
 
         #endregion

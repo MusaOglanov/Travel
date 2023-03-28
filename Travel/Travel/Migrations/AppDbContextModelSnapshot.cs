@@ -39,14 +39,14 @@ namespace Travel.Migrations
                     b.Property<string>("BaggageAllowance")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("BaggagePrice")
+                        .HasColumnType("int");
+
                     b.Property<int>("DepartureAirportId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DepartureDateTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("FlightCode")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FlightDescription")
                         .HasColumnType("nvarchar(max)");
@@ -78,7 +78,13 @@ namespace Travel.Migrations
                     b.Property<string>("MealDescription")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("MealPrice")
+                        .HasColumnType("int");
+
                     b.Property<int>("ReturnAirportId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReturnPrice")
                         .HasColumnType("int");
 
                     b.Property<int>("SeatClassId")
@@ -88,6 +94,9 @@ namespace Travel.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("TransferAirportId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TransferPrice")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
