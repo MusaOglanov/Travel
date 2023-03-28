@@ -87,7 +87,8 @@ namespace Travel.Controllers
             DateTime arrivalDateTime = DateTime.Parse(arrivalDateTimeStr);
             ticket.ArrivalDateTime = arrivalDateTime;
 
-            ticket.TicketPrice += ticket.ReturnPrice + ticket.TransferPrice + ticket.BaggagePrice + ticket.MealPrice;
+            ticket.TicketPrice += ticket.ReturnPrice +
+            ticket.TransferPrice + ticket.BaggagePrice + ticket.MealPrice;
 
 
 
